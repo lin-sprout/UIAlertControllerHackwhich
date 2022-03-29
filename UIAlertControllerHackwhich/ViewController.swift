@@ -10,6 +10,10 @@ import UIKit
 
 class ViewController: UIViewController {
     
+//(Optional)-add a label to alter on alter actions pressed
+    
+    @IBOutlet weak var labelToChangeFromAlert: UILabel!
+    
 //MARK: declare variables, connect outlets(public variables)
     
 //MARK: viewDidLoad function puts item inside the function immediately on the home screen.
@@ -36,7 +40,19 @@ class ViewController: UIViewController {
         
         
         
-        let ok = UIAlertAction(title: "OK", style: .default) {action in print(alert.textFields?.first)
+        let ok = UIAlertAction(title: "OK", style: .default) {action in
+            if let firstName = alert.textFields![0].text,
+               let lastName = alert.textFields![1].text
+            {
+            
+            //console output only
+                print("OK Pressed \nName:" + firstName + " " + lastName)
+                
+                //(optional) change label text on alert pressed
+                self.labelToChangeFromAlert.text = ("Name:" + firstName + " " + lastName)
+                
+            }
+            print(alert.textFields?.first)
             print(alert.textFields?.last)
             
         }
